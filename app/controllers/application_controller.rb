@@ -14,4 +14,6 @@ class ApplicationController < ActionController::Base
     @count_tasks = user.tasks.count
   end
   
+ 
+  
 end
