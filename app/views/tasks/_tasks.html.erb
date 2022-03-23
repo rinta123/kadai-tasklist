@@ -5,19 +5,19 @@
         <img class="rounded me-2 mb-5" src="<%= gravatar_url(task.user, { size: 64 }) %>" alt="">
         <div>
           <div>
-            <%= link_to task.user.name, user_path(task.user), class: "text-decoration-none" %> <span class="text-muted">posted at <%= task.created_at %></span>
+            <%= link_to task.user.name, task, class: "text-decoration-none" %> <span class="text-muted">posted at <%= task.created_at %></span>
           </div>
           <div>
             <p><%= task.content %></p>
           </div>
           <div>
             <% if current_user == task.user %>
-              <%= link_to "Delete", task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+              <%= link_to "Delete", tasks_path(task), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
             <% end %>
           </div>
         </div>
       </li>
     <% end %>
   </ul>
-  <%== pagy_bootstrap_nav(@pagy) %>
+  
 <% end %>

@@ -10,6 +10,24 @@ root to: 'tasks#index'
 
   get 'signup', to: 'users#new'
 
-resources :tasks
-resources :users
+
+  get 'tasks/new', to: 'tasks#new'
+
+  post 'tasks', to: 'tasks#create'
+  
+  
+  delete 'tasks.:id', to: 'tasks#destroy'
+
+  # index: show の補助ページ
+  get 'tasks', to: 'tasks#index'
+
+  # new: 新規作成用のフォームページ
+  
+  # edit: 更新用のフォームページ
+  
+  
+  resources :tasks, only: [:show, :edit, :update, :destroy] 
+  resources :users, only: [:index,  :create]
+
 end
+

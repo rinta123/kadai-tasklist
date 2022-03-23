@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [ :show, :edit, :update, :destroy]
   before_action :require_user_logged_in, only: [:index, :show]
 
   def index
-    @tasks = Task.all
+    @task = current_user.tasks.build  # form_with 用
+    @pagy, @tasks = pagy(current_user.tasks.order(id: :desc))
   end
 
   def show
@@ -19,7 +20,7 @@ class TasksController < ApplicationController
 
     if @task.save
       flash[:success] = 'タスクが正常に投稿されました'
-      redirect_to @task
+      redirect_to '/'
     else
       flash.now[:danger] = 'タスクが投稿されませんでした'
       render :new
@@ -61,4 +62,6 @@ private
   def task_params
     params.require(:task).permit(:content, :status)
   end
+  
+  
 end
