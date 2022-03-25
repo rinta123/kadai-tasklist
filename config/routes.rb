@@ -13,7 +13,7 @@ root to: 'tasks#index'
 
   
   resources :tasks
-  resources :users, only: [  :create]
+  resources :users, only: [ :create]
 
 end
 

@@ -3,8 +3,4 @@ class AddStatusToTasks < ActiveRecord::Migration[6.1]
     add_column :tasks, :status, :string
   end
   
-  def down
-    remove_column :status
-  end
-  
 end
